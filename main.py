@@ -9,7 +9,11 @@ import asyncio
 
 # חיבור ל‏Google Sheets
 SCOPE = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+import os
+with open("credentials.json", "w") as f:
+    f.write(os.environ["GOOGLE_CREDS"])
 creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', SCOPE)
+
 client_gs = gspread.authorize(creds)
 sheet = client_gs.open_by_key('1KMn38-MP3y-UYp2qkIKU4YklKq9-qihEHQ8gpQcqCB4').sheet1
 
